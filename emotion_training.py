@@ -4,8 +4,6 @@
 
 import os
 #import matplotlib.pyplot as plt
-
-
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
 import tensorflow as tf
 from tensorflow.keras.optimizers import RMSprop  
@@ -76,14 +74,14 @@ model = tf.keras.models.Sequential([
 ])
 model.summary()
 
-model.compile(loss='categorical_crossentropy',optimizer=tf.keras.optimizers.Adam(lr=0.001),
-              metrics=['acc'])#RMSprop(lr=0.001)
+model.compile(loss='categorical_crossentropy',optimizer=tf.keras.optimizers.Adam(lr=0.001),metrics=['acc'])#RMSprop(lr=0.001)
+
 # Total sample count
 total_sample=train_generator.n
+
 # Training
 num_epochs = 5
-model.fit_generator(train_generator,steps_per_epoch=int(total_sample/batch_size),
-                    epochs=5,verbose=1)
+model.fit_generator(train_generator,steps_per_epoch=int(total_sample/batch_size),epochs=5,verbose=1)
 
 # serialize model to JSON
 model_json = model.to_json()
